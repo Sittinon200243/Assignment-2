@@ -1,0 +1,23 @@
+tomcat:
+   image: tomcat:8.0
+   ports:
+     - 8080:8080
+   volumes:
+     - ./target/Assignment2-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/Assignment2-0.0.1-SNAPSHOT.war
+   image: tomcat:8.0
+   ports:
+     - 8080:8080
+   container_name: as2-tomcat
+   volumes:
+     - ./target/Assignment2-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/Assignment2-0.0.1-SNAPSHOT.war
+Jenkins:
+   image: jenkins
+   user: root
+   privileged: true
+   ports:
+     - 8084:8084
+   container_name: as2-jenkins
+   volumes:
+     - ~/jenkins:/var/jenkins_home
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /usr/local/bin/docker:/usr/local/bin/docker
